@@ -26,7 +26,7 @@ function isNotChar(word) {
 function toWord(dic) {
     return dic.surface_form;
 }
-const PunctuationRegExp = /[./\-#]/i;
+const PunctuationRegExp = /[./\-]/i;
 function computeXDictionaries(words) {
     let results = [];
     for (let i = 0; i < words.length; i++) {
@@ -55,7 +55,7 @@ function filterXKeywords(dictionaries) {
 let cacheTokenizer;
 export function getKeywords(text) {
     if (cacheTokenizer) {
-        let results = tokenizer.tokenize(text);
+        let results = cacheTokenizer.tokenize(text);
         return Promise.resolve(filterXKeywords(results));
     }
     return getTokenizer().then(tokenizer => {
