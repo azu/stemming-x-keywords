@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/stemming-x-keywords/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "get stemming unknown keywords by using kuromoji.js(ja)",
   "main": "lib/stemming-x-keywords.js",
   "files": [
