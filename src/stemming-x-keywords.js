@@ -20,7 +20,7 @@ function isNotWhitespace(dic) {
     return dic.surface_form.trim().length !== 0;
 }
 // 1文字以下ではない
-function isNotChar(word){
+function isNotChar(word) {
     return word.length > 1;
 }
 function toWord(dic) {
@@ -52,8 +52,14 @@ function filterXKeywords(dictionaries) {
     let combinedWords = computeXDictionaries(xDicts.map(toWord));
     return arrayUniq(combinedWords.filter(isNotChar));
 }
+let cacheTokenizer;
 export function getKeywords(text) {
+    if (cacheTokenizer) {
+        let results = tokenizer.tokenize(text);
+        return Promise.resolve(filterXKeywords(results));
+    }
     return getTokenizer().then(tokenizer => {
+        cacheTokenizer = tokenizer;
         let results = tokenizer.tokenize(text);
         return filterXKeywords(results)
     });
