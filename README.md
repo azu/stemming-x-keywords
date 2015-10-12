@@ -17,7 +17,7 @@ Get stemming unknown keywords.
 ## Usage
 
 ```js
-import {getKeywords} from "../src/stemming-x-keywords";
+import {getKeywords} from "gstemming-x-keywords";
 let text = `ESLintのルールを拡張する仕組みについて解説しています。
 ESLintではJavaScriptのコードをパースして作成されたASTを元にコードのLintを行います。
 実際にESLintのルールを解釈できる小さな実装を作りながらプラグインの仕組みについて学びます。`;
