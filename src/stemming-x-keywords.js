@@ -19,16 +19,21 @@ function isNotWhitespace(dic) {
     }
     return dic.surface_form.trim().length !== 0;
 }
+// 1文字以下ではない
+function isNotChar(word){
+    return word.length > 1;
+}
 function toWord(dic) {
     return dic.surface_form;
 }
+const PunctuationRegExp = /[./\-#]/i;
 function computeXDictionaries(words) {
     let results = [];
     for (let i = 0; i < words.length; i++) {
         let currentWord = words[i];
         let nextWord = words[i + 1];
         let combinationWord = words[i + 2];
-        if (nextWord === "." && combinationWord !== undefined) {
+        if (PunctuationRegExp.test(nextWord) && combinationWord !== undefined) {
             results.push(currentWord + nextWord + combinationWord);
             i += 2;
         } else {
@@ -45,7 +50,7 @@ function filterXKeywords(dictionaries) {
         }
     });
     let combinedWords = computeXDictionaries(xDicts.map(toWord));
-    return arrayUniq(combinedWords);
+    return arrayUniq(combinedWords.filter(isNotChar));
 }
 export function getKeywords(text) {
     return getTokenizer().then(tokenizer => {
