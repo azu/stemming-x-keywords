@@ -2,7 +2,9 @@
 "use strict";
 import kuromoji from "kuromoji";
 import arrayUniq from "array-uniq";
-const options = {dicPath: "./node_modules/kuromoji/dist/dict/"};
+import path from "path";
+const kuromojiDir = require.resolve("kuromoji");
+const options = {dicPath: path.join(kuromojiDir, "../../dict") + "/"};
 function getTokenizer() {
     return new Promise((resolve, reject) => {
         kuromoji.builder(options).build(function (err, tokenizer) {
